@@ -1,6 +1,6 @@
 
 
 import { createApp } from 'vue'
-import App from './components/v-text.vue'
+import App from './components/v-model.vue'
 
 createApp(App).mount('#app')
