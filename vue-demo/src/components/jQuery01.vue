@@ -1,0 +1,6 @@
+<template>
+{{ msg }}
+</template>
+
+
+
