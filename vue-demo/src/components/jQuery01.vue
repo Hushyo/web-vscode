@@ -1,6 +1,0 @@
-<template>
-{{ msg }}
-</template>
-
-
-

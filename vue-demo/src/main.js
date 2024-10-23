@@ -1,6 +1,6 @@
 
 
 import { createApp } from 'vue'
-import App from './components/jQuery01.vue'
+import App from './components/demo.vue'
 
 createApp(App).mount('#app')
