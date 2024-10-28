@@ -3,34 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.min.css">
+    <title>Scroll Triggered Animation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        div {
+            background: red;
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            opacity: 0; /* 初始状态为透明 */
+        }
+
+        .visible {
+            opacity: 1; /* 可见状态 */
         }
     </style>
 </head>
 <body>
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">1</div>
-      <div class="swiper-slide">2</div>
-      <div class="swiper-slide">3></div>
-    </div>
-  </div>
-<script src="node_modules/swiper/swiper-bundle.min.js"></script>
+    <div class="animate__animated">a</div>
+    <div class="animate__animated">a</div>
+    <div class="animate__animated">a</div>
+    <div class="animate__animated">a</div>
 
-<script>
-var mySwiper = new Swiper('.swiper', {
-  autoplay:true,//等同于以下设置
-  /*autoplay: {
-    delay: 3000,
-    stopOnLastSlide: false,
-    disableOnInteraction: true,
-    },*/
-});
-</script>
+    <script>
+        const targets = document.querySelectorAll('.animate__animated');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__backInLeft'); // 添加从左边弹出的动画类
+                    entry.target.classList.add('visible'); // 添加可见类
+                    observer.unobserve(entry.target); // 停止观察
+                }
+            });
+        });
+
+        targets.forEach(target => {
+            observer.observe(target); // 观察每个目标元素
+        });
+    </script>
 </body>
 </html>
