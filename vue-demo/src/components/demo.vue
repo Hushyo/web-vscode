@@ -1,12 +1,32 @@
-<template> {{ obj }} </template>
+<template> 
+<div class="container">
+数字:{{ number }} 
+<button @click="addNumber">+1</button>
+<hr>
+<vmodel></vmodel>
+</div>
+</template>
 
 <script setup>
 
-import {reactive} from 'vue'
+import {ref} from 'vue'
 
-var obj = reactive({name:"pang",id:1});
-setTimeout(()=>{
-    obj.name="Hush"
-},2000)
+var number = ref(1);
+var addNumber = ()=>{
+    number.value++;
+}
 
 </script>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    margin:200px auto;
+    background-color: antiquewhite;
+    width:90%;
+    height: 300px;
+}
+</style>

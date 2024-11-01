@@ -1,6 +1,11 @@
 
 
 import { createApp } from 'vue'
-import App from './components/demo.vue'
+import App from './components/F.vue'
+import 'p5-ui/dist/style.css'
 
-createApp(App).mount('#app')
+const app=createApp(App);
+app.mount("#app");
+
+
+
