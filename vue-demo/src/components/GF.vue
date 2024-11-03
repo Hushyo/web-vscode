@@ -1,0 +1,77 @@
+<template>
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-4">{{ value }}</div>
+            <div class="col-4">
+                爷爷组件
+            </div>
+            <div class="col-4"><input type="text" v-model.lazy="value"></div>
+        </div>
+        <div class="row g-0">
+            <F></F>
+        </div>
+
+        <div class="row g-0">
+            <div class="col-1">使用v-if</div>
+            <div v-if="level==='A'" class="col-2">等级为A</div>
+            <div v-else-if="level==='B'" class="col-2">等级为B</div>
+            <div v-else="level==='C'" class="col-2">等级为C</div>
+            <div class="col-md-3"><P5Button @click="funA">A</P5Button></div>
+            <div class="col-md-3"><P5Button @click="level='B'">B</P5Button></div>
+            <div class="col-md-3"><P5Button @click="level='C'">C</P5Button></div>
+        </div>
+        <div class="row g-0">
+            <div class="col-2">使用v-show</div>
+            <div class="col-2">{{flag}}</div>
+            <div v-show="flag" class="col-4">显示与隐藏</div> 
+            <div v-if="flag" class="col-4"><P5Button @click="flag=!flag">切换</P5Button></div>
+            <div v-if="!flag" class="offset-4 col-4"><P5Button @click="flag=!flag">切换</P5Button></div>
+        </div>
+
+    </div>
+
+<hr>
+</template>
+
+<script setup> 
+import F from './F.vue'
+import { ref,provide} from 'vue'
+import { P5Button } from 'p5-ui';
+var value=ref("双向绑定");
+const level=ref("A");
+const flag = ref(true);
+const funA=()=>{
+    level.value="A";
+}
+
+
+let money = ref(1000);
+let updateMoney = (value)=>{
+    money.value+=value;
+}
+provide('mone',money);
+provide('updateMoney',updateMoney);
+
+</script>
+
+
+
+<style>
+body{
+    background-color: black;
+    background-image: url('../assets/images/bg.png');
+}
+div:not(.container):not(#app){
+    border:1px solid antiquewhite;
+}
+*{
+    padding:0px;
+    margin:0px;
+    color:white;
+    font-size:20px;
+    font-weight: 600;
+    text-shadow:1px 1px 3px black;
+
+    /*background-repeat: no-repeat;*/
+}
+</style>
