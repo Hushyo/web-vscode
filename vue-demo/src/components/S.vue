@@ -2,7 +2,7 @@
 <div>
     子组件 <br>
     Money:{{ mone }}
-    <P5Button @click="updateMoney(500)">点击增加资金</P5Button>
+    <P5Button @click="updateMoney">点击增加资金</P5Button>
 
 </div>
 </template>
