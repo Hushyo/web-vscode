@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <div class="row g-0">
-            <div class="col-4">{{ value }}</div>
+            <div class="col-4"><P5Title :content="value" size="medium" font_color="rgb(241, 14, 14)"></P5Title></div>
             <div class="col-4">
-                爷爷组件
+                <P5Title content="GF组件" size="medium" font_color="rgb(241, 14, 14)"> 爷爷组件</P5Title>
             </div>
             <div class="col-4"><input type="text" v-model.lazy="value"></div>
         </div>
@@ -16,9 +16,9 @@
             <div v-if="level==='A'" class="col-2">等级为A</div>
             <div v-else-if="level==='B'" class="col-2">等级为B</div>
             <div v-else="level==='C'" class="col-2">等级为C</div>
-            <div class="col-md-3"><P5Button @click="funA">A</P5Button></div>
-            <div class="col-md-3"><P5Button @click="level='B'">B</P5Button></div>
-            <div class="col-md-3"><P5Button @click="level='C'">C</P5Button></div>
+            <div class="col-md-1"><P5Button @click="funA">A</P5Button></div>
+            <div class="col-md-1"><P5Button @click="level='B'">B</P5Button></div>
+            <div class="col-md-1"><P5Button @click="level='C'">C</P5Button></div>
         </div>
         <div class="row g-0">
             <div class="col-2">使用v-show</div>
@@ -46,24 +46,43 @@
             </div>
             <div class="row g-0">
                 <div class="col-6" @click.capture.self="show('父元素被冒泡牵连')">
-                    <button @click="show('事件冒泡')">事件冒泡</button>
-                    <button @click.stop="show('阻止事件冒泡')">阻止事件冒泡</button>
+                    <P5Button @click="show('事件冒泡')">事件冒泡</P5Button>
+                    <P5Button @click.stop="show('阻止事件冒泡')">阻止事件冒泡</P5Button>
                 </div>
                 <div class="col-6">
-                    <button @click.once="show('仅触发一次')">仅触发一次</button>
+                    <P5Button @click.once="show('仅触发一次')">仅触发一次</P5Button>
                 </div>
 
             </div>
             <div class="row g-0">
-                <div class="col-md-6" @click="show('父元素不捕获')">
-                <button @click="show('不捕获子元素')">不捕获</button>
+                <div class="col-md-2">事件捕获：</div>
+                <div class="col-md-2" @click.enter="show('父元素不捕获')">
+                <P5Button @click="show('不捕获子元素')">不捕获</P5Button>
                 </div>
-                <div class="col-md-6" @click.capture="show('父元素捕获')" @click="show('冒泡阶段')" >
-                <button @click.stop="show('捕获子元素')">捕获</button>
+                <div class="col-md-1" @click.capture="show('父元素捕获')" @click="show('冒泡阶段')" >
+                <P5Button @click.stop="show('捕获子元素')">捕获</P5Button>
                 </div>
             </div>
-
-
+            <div class="row g-0">
+                <div class="col-md-3">按键绑定&计算属性:</div>
+                <div class="col-md-3"  tabindex="0" @keydown.enter="show('你按了enter对吧')"> 
+                    <P5Button>enter按下</P5Button> 
+                    <P5Button @click="updateMsg"><P5Title content="点击更新" size="medium" font_color="rgb(241, 14, 14)"></P5Title></P5Button>
+                </div>
+                <div class="col-md-3">初始msg:{{ message }}</div>
+                <div class="col-md-3">反转msg:{{ reversedMessage }}</div>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-2">侦听器：</div>
+                <div class="col-md-4"><input type="text" v-model="watchVar"></div>
+           
+            </div>
+            <div class="row g-0">
+                <div class='col-md-3'>样式绑定:</div>
+                <div class="col-md-3"><div :class="className">字符串绑定</div></div>
+                <div class="col-md-3"><div :class="classObj2" class="b" @click="isActive=!isActive">对象绑定</div></div>
+                <div class="col-md-3"><div :class="[className,b]">数组绑定</div></div>
+            </div>
     </div>
 
 <hr>
@@ -71,8 +90,8 @@
 
 <script setup> 
 import F from './F.vue'
-import {  reactive,ref,provide} from 'vue'
-import { P5Button } from 'p5-ui';
+import {  reactive,ref,provide, computed,watch} from 'vue'
+import { P5Button,P5Title } from 'p5-ui';
 var value=ref("双向绑定");
 const level=ref("A");
 const flag = ref(true);
@@ -87,6 +106,8 @@ const list=reactive([
 ]);
 
 const obj=reactive({id:11,name:"对象渲染",type:' 对象'})
+
+
 
 let money = ref(1000);
 let updateMoney =eve=>{
@@ -103,6 +124,28 @@ provide('updateMoney',updateMoney);
 
 
 
+// 计算属性
+const message = ref("hello world");
+const reversedMessage = computed(()=>{
+    return message.value.split('').reverse().join('');
+})
+const updateMsg = ()=>{
+message.value+='9'
+}
+
+//侦听器
+const watchVar =ref("侦听变量");
+watch(watchVar,(newVal,oldVal)=>{
+    console.log(oldVal+'变为'+newVal);
+})
+
+//样式绑定
+const className='box';
+const isActive = ref(true);
+const classObj1=reactive({[className]:isActive.value})
+const classObj2=computed(()=>{
+ return {[className]:isActive.value}
+})
 
 </script>
 
@@ -110,11 +153,14 @@ provide('updateMoney',updateMoney);
 
 <style>
 body{
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     background-image: url('../assets/images/bg.png');
 }
 div:not(.container):not(#app){
     border:1px solid antiquewhite;
+}
+.b{
+    background-color: black;
 }
 *{
     padding:0px;
@@ -125,5 +171,8 @@ div:not(.container):not(#app){
     text-shadow:1px 1px 3px black;
 
     /*background-repeat: no-repeat;*/
+}
+.box{
+    color:rgb(241, 14, 14);
 }
 </style>
