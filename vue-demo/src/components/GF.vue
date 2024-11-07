@@ -78,10 +78,17 @@
            
             </div>
             <div class="row g-0">
-                <div class='col-md-3'>样式绑定:</div>
-                <div class="col-md-3"><div :class="className">字符串绑定</div></div>
-                <div class="col-md-3"><div :class="classObj2" class="b" @click="isActive=!isActive">对象绑定</div></div>
-                <div class="col-md-3"><div :class="[className,b]">数组绑定</div></div>
+                <div class='col-md-3'>class属性绑定:</div>
+                <div class="col-md-3"><div :class="[{[className]:isActive}]">字符串绑定</div></div>
+                <div class="col-md-3"><div :class="classObj2"  @click="isActive=!isActive">对象绑定</div></div>
+                <div class="col-md-3"><div :class="[isActive?className:b]">数组绑定</div></div>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-3">style绑定</div>
+                <div class="col-md-3"><div :style="{color:isActive?'blue':'red',fontSize:'30px'}">style属性绑定</div></div>
+                <div class="col-md-3"><div :style="{[color2]:activeColor,fontSize:fontSize+'px'}">模板对象绑定</div></div>
+                <div class="col-md-3"><div :style="styleObj">js对象绑定</div></div>
+                <div class='col-md-3' :style="[{color:'blue'}]">arr</div>
             </div>
     </div>
 
@@ -90,7 +97,7 @@
 
 <script setup> 
 import F from './F.vue'
-import {  reactive,ref,provide, computed,watch} from 'vue'
+import {  reactive,ref,provide, computed,watch, resolveDirective} from 'vue'
 import { P5Button,P5Title } from 'p5-ui';
 var value=ref("双向绑定");
 const level=ref("A");
@@ -142,10 +149,20 @@ watch(watchVar,(newVal,oldVal)=>{
 //样式绑定
 const className='box';
 const isActive = ref(true);
-const classObj1=reactive({[className]:isActive.value})
+const b = 'b';
 const classObj2=computed(()=>{
  return {[className]:isActive.value}
 })
+
+
+//style定绑
+const activeColor= ref('rgb(241, 14, 14)');
+const fontSize= ref(30);
+const color2= 'color'
+const styleObj={
+    color: activeColor.value,
+    fontSize: fontSize.value+'px'
+}
 
 </script>
 
@@ -160,7 +177,7 @@ div:not(.container):not(#app){
     border:1px solid antiquewhite;
 }
 .b{
-    background-color: black;
+   color:blue
 }
 *{
     padding:0px;

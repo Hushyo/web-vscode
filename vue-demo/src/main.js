@@ -1,7 +1,7 @@
 
 
 import { createApp } from 'vue'
-import App from './components/GF.vue'
+import App from './components/dynamic.vue'
 import 'p5-ui/dist/style.css'
 
 
