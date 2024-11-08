@@ -4,9 +4,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {onMounted, onUnmounted, ref } from 'vue';
 
 const count=ref(1)
+onMounted(()=>{
+    console.log('left组件被挂载')
+})
+onUnmounted(()=>{
+    console.log('left组件被销毁')
+})
 </script>
 <style>
 

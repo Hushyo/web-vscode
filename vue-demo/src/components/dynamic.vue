@@ -2,23 +2,39 @@
     <div class=container>
         <div class="row g-0">
             <div class="col-md-3"><P5Button @click="showComponent=left"><P5Title font_color='red' size="medium" content="点击展示left组件"></P5Title></P5Button></div>
-            <div class="col-md-3">
-                <KeepAlive>
+            <div class="col-md-4">
+                <KeepAlive max='2'>
                     <component :is="showComponent"></component>
                 </KeepAlive>
             </div>
             <div class="col-md-3"><P5Button @click="showComponent=right"><P5Title font_color="red" size="medium" content='点击展示right组件'></P5Title></P5Button></div>
+        </div>
+        <br>
+        <div class="row g-0">
+            <div class="col-md-3">测试插槽内容</div>
+            <div class="col-md-6">
+                <myslot>
+                    <template #slot1> <P5Title :content="msg" font_color="red"></P5Title></template>
+                    <template #slot2> </template>
+                    <template #slot3>{{www}}</template>
+                </myslot>
+            </div>
         </div>
     </div>
     
 </template>
 
 <script setup>
-import { shallowRef } from 'vue';
+import { ref, shallowRef } from 'vue';
+import { P5Button,P5Title } from 'p5-ui';
 import left from './left.vue'
 import right from './right.vue'
-import { P5Button,P5Title } from 'p5-ui';
+import myslot from './slot.vue'
+
+
 const showComponent=shallowRef(left);
+const msg=ref('使用者提供')
+
 </script>
 <style>
 body{
