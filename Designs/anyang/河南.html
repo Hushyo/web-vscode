@@ -3,41 +3,32 @@
 </html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Anyang</title>
   <meta name="description" content="">
+  <!-- Bootstrap -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="all,follow">
-  <!-- Bootstrap CSS-->
   <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome CSS-->
+  <!-- Font Awesome CSS 图标字体-->
   <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-  <!-- Google fonts - Roboto-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,700,400italic">
-  <!-- owl carousel-->
-  <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.css">
-  <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">
   <!-- theme stylesheet-->
   <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
-  <!-- Custom stylesheet - for your changes-->
-  <link rel="stylesheet" href="css/custom.css">
   <!-- Favicon-->
   <link rel="shortcut icon" href="img/anyang/icon.jpeg">
+  <!--animate-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <style>
-      #live2dcanvas {
-        border: 0 !important;
-      }
-    </style>
 </head>
+
 <body>
   <div id="all">
     <div class="container-fluid">
-      <div class="row row-offcanvas row-offcanvas-left"> 
+      <div class="row"> 
         <!--   *** SIDEBAR ***-->
-        <div id="sidebar" class="col-md-4 col-lg-3 sidebar-offcanvas">
+        <div id="sidebar" class="col-md-4 col-lg-3">
+
           <div class="sidebar-content">
+
             <h1 class="sidebar-heading"> <a href="河南.html">安阳</a></h1>
+
             <ul class="sidebar-menu">
               <!-- Link-->
               <li class="sidebar-item"><a href="河南.html" class="sidebar-link active">主页</a></li>
@@ -46,20 +37,16 @@
               <!-- Link-->
               <li class="sidebar-item"><a href="renwen.html" class="sidebar-link">人文</a></li>
 
-
           </ul>
+
             <p class="sidebar-p">&ensp;&ensp;安阳，河南省地级市，古称相、殷、邺、邺城、邺都、邺郡、相州、彰德等，简称殷或邺，位于中国中北部、河南省最北部，地处河南、山西、河北三省交界处，东接濮阳，西临长治，南接鹤壁、新乡，北临邯郸。 </p>
             <p class="sidebar-p">&ensp;&ensp;历史上，先后有商朝、曹魏、后赵、冉魏、前燕、东魏、北齐等在安阳建都，素有“七朝古都”之称。</p>
           
           </div>
         </div>
         <!--   *** SIDEBAR END ***  -->
-        <!--   *** PORTFOLIO ***-->
+
         <div class="col-md-8 col-lg-9 content-column">
-          <div class="small-navbar d-flex d-md-none">
-            <button type="button" data-toggle="offcanvas" class="btn btn-outline-primary"> <i class="fa fa-align-left mr-2"></i>Menu</button>
-            <h1 class="small-navbar-heading"> <a href="河南.html">Creative </a></h1>
-          </div>
 
           <div class="grid row">
 
@@ -175,10 +162,7 @@
   </div>
   <!-- JavaScript files-->
   <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/popper.js/umd/popper.min.js"> </script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-  <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="vendor/masonry-layout/masonry.pkgd.min.js"></script>
   <script src="js/front.js"></script>
 
@@ -188,15 +172,15 @@
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate__fadeInDown'); // 添加从左边弹出的动画类
-                entry.target.classList.add('visible'); // 添加可见类
+                entry.target.classList.add('animate__fadeInDown'); 
+                entry.target.classList.add('visible'); 
                 observer.unobserve(entry.target); // 停止观察
             }
         });
     });
 
     targets.forEach(target => {
-        observer.observe(target); // 观察每个目标元素
+        observer.observe(target); // 观察目标元素
     });
 </script>
 </body>

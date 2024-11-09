@@ -12,16 +12,27 @@
         <br>
         <div class="row g-0">
             <div class="col-md-3">测试插槽内容</div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <myslot>
-                    <template #slot1> <P5Title :content="msg" font_color="red"></P5Title></template>
-                    <template #slot2> </template>
-                    <template #slot3>{{www}}</template>
+                    <template v-slot="msg"><P5Title :content="msg.msg" font_color="red"></P5Title></template>
+                    <template #slot2="msg"> {{www}} </template>
+                    <template #slot3>{{ www }}</template>
+                </myslot>
+            </div>
+            <div class="col-md-3">
+                <myslot>
+                    <template #default> {{ www }}</template>
+                    <template #slot2="msg">{{msg}}</template>
+                    <template #slot3>{{ www }}</template>
                 </myslot>
             </div>
         </div>
+
+        <div class="row g-0">
+        <div class="col-md-3">自定义指令</div>
+        <div class="col-md-3"><h6 v-color="{color:'red',text:'hello'}">v-color</h6></div>
+        </div>
     </div>
-    
 </template>
 
 <script setup>
@@ -34,6 +45,16 @@ import myslot from './slot.vue'
 
 const showComponent=shallowRef(left);
 const msg=ref('使用者提供')
+const color=ref('red')
+//自定义指令
+const vColor={
+    mounted(el,binding){
+        el.style.color = binding.value.color
+    }
+}
+
+
+
 
 </script>
 <style>
