@@ -31,6 +31,13 @@
         <div class="row g-0">
         <div class="col-md-3">自定义指令</div>
         <div class="col-md-3"><h6 v-color="{color:'red',text:'hello'}">v-color</h6></div>
+     
+        </div>
+        <div class="row g-0">
+            <div class="col-md-3">根组件</div>
+            <div class="col-md-3"><RouterLink to="/home">Home</RouterLink></div>
+            <div class="col-md-3"><router-link to="/about">About></router-link></div>
+            <div class="col-md-12"><RouterView></RouterView></div>
         </div>
     </div>
 </template>
