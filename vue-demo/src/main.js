@@ -1,7 +1,7 @@
 
 
 import { createApp } from 'vue'
-import App from './components/dynamic.vue'
+import App from './index.vue'
 import 'p5-ui/dist/style.css'
 import router from './router.js'
 import P5UI from 'p5-ui'

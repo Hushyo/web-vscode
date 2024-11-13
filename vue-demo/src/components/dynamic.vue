@@ -37,7 +37,6 @@
             <div class="col-md-3">根组件</div>
             <div class="col-md-3"><RouterLink to="/home">Home</RouterLink></div>
             <div class="col-md-3"><router-link to="/about">About></router-link></div>
-            <div class="col-md-12"><RouterView></RouterView></div>
         </div>
     </div>
 </template>

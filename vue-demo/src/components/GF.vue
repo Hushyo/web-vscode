@@ -90,8 +90,9 @@
                 <div class="col-md-3"><div :style="styleObj">js对象绑定</div></div>
                 <div class='col-md-3' :style="[{color:'blue'}]">arr</div>
             </div>
-    </div>
+            <RouterLink to="/home">dynamic</RouterLink>
 
+    </div>
 <hr>
 </template>
 
@@ -168,10 +169,12 @@ const styleObj={
 
 
 
-<style>
+<style scoped>
+@import url( './src/assets/css/bootstrap.min.css');
+
 body{
     background-color: rgb(0, 0, 0);
-    background-image: url('../assets/images/bg.png');
+    background-image: url('https://ik.imagekit.io/hushimg/p5/bg.png?updatedAt=1731407254989');
 }
 div:not(.container):not(#app){
     border:1px solid antiquewhite;
