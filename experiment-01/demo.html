@@ -4,26 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
     <style>
         div{
-            background-color: red;
-            height: 20px;
-            width: 20px;
-            align-self: center;
-            justify-self: center;
+            margin:auto;
+            width: 200px;
         }
-    body{
-        display: flex;
-    }
+        dialog::backdrop{
+            
+        }
     </style>
 </head>
-<body>
-    
-<div>a</div>
 
+<body>
+    <button onclick="show()">显示</button>
+    <button onclick="showV()">全屏居中强行对话</button>
+    <button onclick="hide()">关闭</button>
+
+    <dialog>
+        这是对话框 <br>
+        <button onclick="hide()">关闭</button>
+    </dialog>
+    
 </body>
 
+
 <script>
+    var dialog = document.querySelector("dialog")
+    var show = ()=>{
+        dialog.show();
+    }
+    var showV = ()=>{
+        dialog.showModal();
+    }
+    var hide = ()=>{
+        dialog.close();
+    }
 </script>
 </html>
